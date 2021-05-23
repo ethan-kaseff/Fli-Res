@@ -1,6 +1,6 @@
 # **Fli-Res**
 
-## `Introduction`
+## Introduction
 Fli-Res is a web application allowing users search a catalog of local planes and pilots and make reservations for trips and more. It will function very similar to Airbnb. 
 
 ## Technologies Used
