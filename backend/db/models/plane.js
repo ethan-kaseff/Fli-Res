@@ -43,6 +43,14 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Plane.hasOne(models.Category, {foreignKey: 'categoryId'});
     Plane.hasMany(models.Review, {foreignKey: 'planeId'})
+
+    const columnMapping = {
+      through: 'Favorites',
+      otherKey: 'userId',
+      foreignKey: 'planeId'
+    }
+    Plane.belongsToMany(models.User, columnMapping);
+
   };
   return Plane;
 };
