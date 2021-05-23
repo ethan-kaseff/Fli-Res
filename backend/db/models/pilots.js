@@ -18,6 +18,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Pilot.associate = function(models) {
     // associations can be defined here
+
+    const columnMapping = {
+      through: 'PilotPlanConnectors',
+      otherKey: 'planeId',
+      foreignKey: 'pilotId'
+    }
+    Pilot,belongToMany(models.Plane, columnMapping);
   };
   return Pilots;
 };

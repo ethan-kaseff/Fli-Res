@@ -51,6 +51,15 @@ module.exports = (sequelize, DataTypes) => {
     }
     Plane.belongsToMany(models.User, columnMapping);
 
+    Plane.hasMany(modles.Booking, { foreignKey: 'planeId'})
+
+    const columnMapping2 = {
+      through: 'PilotPlanConnectors',
+      otherKey: 'pilotId',
+      foreignKey: 'planeId'
+    };
+    Plane.belongsToMany(models.Pilot, columnMapping2)
+
   };
   return Plane;
 };
