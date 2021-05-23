@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
   Plane.associate = function(models) {
     // associations can be defined here
     Plane.hasOne(models.Category, {foreignKey: 'categoryId'});
+    Plane.hasMany(models.Review, {foreignKey: 'planeId'})
   };
   return Plane;
 };
