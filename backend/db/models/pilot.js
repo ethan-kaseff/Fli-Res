@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'planeId',
       foreignKey: 'pilotId'
     }
-    Pilot,belongToMany(models.Plane, columnMapping);
+    Pilot.belongsToMany(models.Plane, columnMapping);
   };
-  return Pilots;
+  return Pilot;
 };

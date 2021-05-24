@@ -20,5 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Category.hasMany(models.Plane, {foreignKey: 'categoryId'})
   };
-  return Categories;
+  return Category;
 };

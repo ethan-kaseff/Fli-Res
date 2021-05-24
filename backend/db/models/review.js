@@ -23,5 +23,5 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.Plane, { foreignKey: "planeId" });
     Review.belongsTo(models.User, { foreignKey: "userId" });
   };
-  return Reviews;
+  return Review;
 };

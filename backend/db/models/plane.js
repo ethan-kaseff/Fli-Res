@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    imageLink: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {});
   Plane.associate = function(models) {
     // associations can be defined here
@@ -51,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     Plane.belongsToMany(models.User, columnMapping);
 
-    Plane.hasMany(modles.Booking, { foreignKey: 'planeId'})
+    Plane.hasMany(models.Booking, { foreignKey: 'planeId'})
 
     const columnMapping2 = {
       through: 'PilotPlanConnectors',
