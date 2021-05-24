@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     Plane.hasMany(models.Review, {foreignKey: 'planeId'})
 
     const columnMapping = {
-      through: 'Favorites',
+      through: 'Favorite',
       otherKey: 'userId',
       foreignKey: 'planeId'
     }
@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     Plane.hasMany(models.Booking, { foreignKey: 'planeId'})
 
     const columnMapping2 = {
-      through: 'PilotPlanConnectors',
+      through: 'PilotPlanConnector',
       otherKey: 'pilotId',
       foreignKey: 'planeId'
     };

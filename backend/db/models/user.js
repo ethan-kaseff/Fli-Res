@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Review, { foreignKey: 'userId', onDelete:'cascade', hooks: true})
     
     const columnMapping = {
-      through: 'Favorites',
+      through: 'Favorite',
       otherKey: 'planeId',
       foreignKey: 'userId',
     };
@@ -79,6 +79,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     });
+    console.log('++++++++++++++++++++++++++++++', user);
     if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);
     }

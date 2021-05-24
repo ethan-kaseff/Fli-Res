@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
     const columnMapping = {
-      through: 'PilotPlanConnectors',
+      through: 'PilotPlanConnector',
       otherKey: 'planeId',
       foreignKey: 'pilotId'
     }
