@@ -21,7 +21,7 @@ module.exports = {
       refillMiles: 456,
       state: 'KS',
       zipCode: 66211,
-      imageLink: 
+      imageLink: '/public/images/private-jet.jpg'
      }
    ], {})
   },
