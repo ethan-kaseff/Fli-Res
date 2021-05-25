@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {getPlanes} from '../../store/plane';
 
@@ -13,7 +13,6 @@ function PlaneProfile() {
 
     useEffect(() => {
         dispatch(getPlanes());
-        console.log('in the useEffect')
     }, [dispatch])
 
     console.log(planeId);
