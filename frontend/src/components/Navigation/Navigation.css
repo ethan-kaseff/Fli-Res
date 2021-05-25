@@ -2,4 +2,5 @@ nav {
     background-color: darkcyan;
     display: flex;
     justify-content: space-between;
+    padding: 6px;
 }

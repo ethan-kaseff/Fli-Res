@@ -30,7 +30,10 @@ function PlaneProfile() {
                 <h1>{plane.name}</h1>
                 <h3>Description</h3>
                 <p>{plane.description}</p>
-                <img src={plane.imageLink} alt='plane'></img>
+                <div>
+                    <img src={plane.imageLink} alt='plane'></img>
+
+                </div>
                 <div
                     className="pokemon-detail-image"
                     style={{ backgroundImage: `url('${plane.imageLink}')` }}
