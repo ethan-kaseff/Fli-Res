@@ -1,0 +1,7 @@
+.pokemon-detail-image {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 400px;
+  transition: height 0.5s;
+}
