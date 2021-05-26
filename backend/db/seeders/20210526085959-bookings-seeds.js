@@ -12,15 +12,21 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface.bulkInsert('Categories', [
+   return queryInterface.bulkInsert('Bookings', [
      {
-      name: '4K',
-      description: 'These planes are the creme de la creme of Planes, ya hear? '
+       planeId: 1,
+       userId: 1,
+       startDate: new Date('2021-06-10'),
+       endDate: new Date('2021-06-15')
      },
      {
-       name: '1080p',
-       description: 'All I would say it, you will be satisfied!'
-     }
+       planeId: 1,
+       userId: 1,
+       startDate: new Date('2021-06-20'),
+       endDate: new Date('2021-06-24')
+     },
+
+
    ], {})
   },
 

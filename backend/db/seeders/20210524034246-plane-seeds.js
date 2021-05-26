@@ -22,7 +22,19 @@ module.exports = {
       state: 'KS',
       zipCode: 66211,
       imageLink: '/images/private-jet.jpeg'
-     }
+     },
+     {
+       name: 'Pretty Good Plane',
+       description: 'I mean, this one is good. It will get you where you need to go with style and everyone knows it. Take Pretty, and you will not look back, even for a second.',
+       categoryId: 2,
+       yearBuilt: 1998,
+       refillMiles: 345,
+       state: 'MO',
+       zipCode: 64110,
+       imageLink: '/images/prop-plane.jpg'
+     },
+     
+
    ], {})
   },
 

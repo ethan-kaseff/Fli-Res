@@ -16,6 +16,10 @@ export const getPlanes = () => async dispatch => {
     }
 }
 
+export const getAvailablePlanes = (startDate, endDate, state ) => async dispatch => {
+    // const response = await fetch('/api/planes')
+}
+
 const initialState = {}
 
 // Reducer 

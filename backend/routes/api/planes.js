@@ -3,7 +3,9 @@ const asyncHandler = require('express-async-handler');
 
 const { check } = require('express-validator');
 
-const { Plane } = require('../../db/models')
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+const { Booking, Plane } = require('../../db/models')
 
 const router = express.Router();
 
@@ -14,9 +16,61 @@ router.get('/:id', asyncHandler(async function (req, res) {
 }));
 
 router.get('/', asyncHandler(async function (req, res) {
-    const plane = await Plane.findAll();
-    return res.json(plane);
+    const planes = await Plane.findAll();
+    return res.json(planes);
 }));
+
+router.get('/available/:startDate/:endDate', asyncHandler( async function (req, res) {
+    const {startDate, endDate } = req.params;
+
+    const startDateFormatted = new Date(startDate);
+    const endDateFormatted = new Date(endDate)
+
+    const relevantBookings = await Booking.findAll({
+        where: {
+            [Op.and]: {
+                startDate: {
+                    [Op.lte]: endDateFormatted,
+                },
+                endDate: {
+                    [Op.gte]: startDateFormatted,
+                }
+            }
+        }
+    })
+    
+    const bookedPlaneIdsSet = new Set();
+
+    for (booking of relevantBookings) {
+        bookedPlaneIdsSet.add(booking.planeId)
+    }
+
+    console.log(bookedPlaneIdsSet);
+
+    const availablePlanes = await Plane.findAll({
+        where: {
+            id: {
+                [Op.notIn]: [...bookedPlaneIdsSet]
+
+            }
+        }
+    })
+
+    console.log(availablePlanes)
+
+    return res.json(availablePlanes);
+
+}))
+
+
+// [Op.or]: {
+//     [Op.between]: [startDate, endDate]
+// }
+
+// [Op.or]: {
+//     [Op.between]: [startDate, endDate]
+
+// }
 
 
 
