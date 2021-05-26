@@ -1,6 +1,10 @@
 nav {
-    background-color: darkcyan;
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
     padding: 6px;
+    height: 35px;
+    /* top: 0; */
+    /* overflow: hidden; */
+    /* position: absolute; */
 }

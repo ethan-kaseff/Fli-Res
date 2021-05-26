@@ -20,28 +20,33 @@ function App() {
 
   return isLoaded && (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <HomePage />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path='/planes/:planeId'>
-            <PlaneProfile />
-          </Route>
-          <Route path='/planes/availability/:startDate/:endDate'>
-            <SearchResults /> 
-          </Route>
-        </Switch>
-      )}
+      <div className='all-content'>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
+            <Route path="/login">
+              <Navigation isLoaded={isLoaded} />
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path='/planes/:planeId'>
+              <PlaneProfile />
+            </Route>
+            <Route path='/searchResults'>
+              <SearchResults /> 
+            </Route>
+          </Switch>
+        )}
+      </div>
     </>
   );
 }
 
 export default App;
+
+// /planes/availability /: startDate /: endDate

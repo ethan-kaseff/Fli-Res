@@ -23,11 +23,11 @@ export const getPlanes = () => async dispatch => {
 }
 
 export const getAvailablePlanes = (startDate, endDate, state ) => async dispatch => {
-    const response = await fetch(`/api/planes/availability/${startDate}/${endDate}`);
+    const response = await fetch(`/api/planes/available/${startDate}/${endDate}`);
 
     if (response.ok) {
         const list = await response.json();
-        dispatch()
+        dispatch(loadAvailable(list))
     }
 }
 

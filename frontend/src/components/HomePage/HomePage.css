@@ -6,8 +6,25 @@ font-family: 'Lato';
 color: white;
 } */
 
-.main-area {
-    /* background-image: url("./images/plane-home-page.jpg");
-    width: 100%; */
-    
+body {
+    position: relative;
 }
+
+.main-area {
+    background-image: url('./glen-jackson-LglfAGlZCvk-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* width: 100%; */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* .stuff {
+    position: absolute;
+} */

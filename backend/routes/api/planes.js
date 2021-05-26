@@ -45,8 +45,6 @@ router.get('/available/:startDate/:endDate', asyncHandler( async function (req, 
         bookedPlaneIdsSet.add(booking.planeId)
     }
 
-    console.log(bookedPlaneIdsSet);
-
     const availablePlanes = await Plane.findAll({
         where: {
             id: {
@@ -55,9 +53,6 @@ router.get('/available/:startDate/:endDate', asyncHandler( async function (req, 
             }
         }
     })
-
-    console.log('relevantBookings', relevantBookings)
-    console.log('availablePlanes', availablePlanes)
 
     return res.json(availablePlanes);
 
