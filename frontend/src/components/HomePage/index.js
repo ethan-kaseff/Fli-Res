@@ -46,6 +46,7 @@ function HomePage() {
                                 }} // PropTypes.func.isRequired,
                                 focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                 onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
+                                showDefaultInputIcon
                             />
                         </div>
                         <button type='submit'>Submit</button>
