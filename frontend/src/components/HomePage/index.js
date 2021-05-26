@@ -1,20 +1,30 @@
 import {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 import 'react-dates/initialize';
 import { DateRangePicker} from 'react-dates';
 
-
 import 'react-dates/lib/css/_datepicker.css';
 import './HomePage.css';
 
+import {getAvailablePlanes} from '../../store/plane';
+
 
 function HomePage() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setfocusedInput] = useState(null);
     
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        dispatch(getAvailablePlanes(startDate, endDate))
+
+        history.push(`/planes/availability/${startDate}/${endDate}`);
     }
 
     return (

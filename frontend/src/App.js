@@ -9,6 +9,7 @@ import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import PlaneProfile from './components/PlaneProfile';
 import HomePage from './components/HomePage';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path='/planes/:planeId'>
             <PlaneProfile />
+          </Route>
+          <Route path='/planes/availability/:startDate/:endDate'>
+            <SearchResults /> 
           </Route>
         </Switch>
       )}

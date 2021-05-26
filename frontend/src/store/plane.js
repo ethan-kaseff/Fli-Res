@@ -1,8 +1,14 @@
 const LOAD = 'planes/LOAD';
+const LOAD_AVAILABLE = 'planes/LOAD_AVAILABLE';
 
 // Action Creators
 const load  = list => ({
     type: LOAD,
+    list
+})
+
+const loadAvailable = list => ({
+    type: LOAD_AVAILABLE,
     list
 })
 
@@ -17,7 +23,12 @@ export const getPlanes = () => async dispatch => {
 }
 
 export const getAvailablePlanes = (startDate, endDate, state ) => async dispatch => {
-    // const response = await fetch('/api/planes')
+    const response = await fetch(`/api/planes/availability/${startDate}/${endDate}`);
+
+    if (response.ok) {
+        const list = await response.json();
+        dispatch()
+    }
 }
 
 const initialState = {}
@@ -33,6 +44,16 @@ const planeReducer = (state = initialState, action) => {
             return {
                 ...allPlanes,
                 ...state
+            }
+        }
+        case LOAD_AVAILABLE: {
+            const availablePlanes = {};
+            action.list.forEach(plane => {
+                availablePlanes[plane.id] = plane;
+            });
+            return {
+                ...state,
+                availablePlanes: availablePlanes
             }
         }
         default: 

@@ -56,7 +56,8 @@ router.get('/available/:startDate/:endDate', asyncHandler( async function (req, 
         }
     })
 
-    console.log(availablePlanes)
+    console.log('relevantBookings', relevantBookings)
+    console.log('availablePlanes', availablePlanes)
 
     return res.json(availablePlanes);
 
