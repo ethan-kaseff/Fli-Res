@@ -2,9 +2,21 @@ nav {
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
-    padding: 6px;
-    height: 35px;
+    /* padding: 6px; */
+    height: 40px;
     /* top: 0; */
     /* overflow: hidden; */
-    /* position: absolute; */
+    position: absolute;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 10px;
 }
+
+
+
+
+
+/* other option for padding stuff  */
+/* nav > * {
+    padding: 10px;
+} */

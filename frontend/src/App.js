@@ -20,25 +20,26 @@ function App() {
 
   return isLoaded && (
     <>
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
             <HomePage isLoaded={isLoaded}/>
           </Route>
           <Route path="/login">
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <SignupFormPage />
           </Route>
           <Route path='/planes/:planeId'>
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <PlaneProfile />
           </Route>
           <Route path='/searchResults'>
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <SearchResults /> 
           </Route>
         </Switch>

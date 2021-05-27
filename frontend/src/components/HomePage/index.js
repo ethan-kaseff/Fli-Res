@@ -10,8 +10,6 @@ import './HomePage.css';
 
 import {getAvailablePlanes} from '../../store/plane';
 
-import Navigation from '../Navigation';
-
 
 function HomePage({isLoaded}) {
     const dispatch = useDispatch();
@@ -32,13 +30,12 @@ function HomePage({isLoaded}) {
     return (
         <>
             <div className='main-area'>
-                {/* <img src='/images/plane-home-page.jpg' id='plane' alt=''></img> */}
-                <Navigation isLoaded={isLoaded}/>
+                <div className='nav-organizer'></div>
                 <div>
                     <h1>Experience the skies in Fli-Res</h1>
                 </div>
-                <div>
-                    <form onSubmit={handleSubmit}>
+                <div >
+                    <form onSubmit={handleSubmit} className='search-bar'>
                         <div>
                             <label>State:</label>
                             <select id='state'>
@@ -62,15 +59,26 @@ function HomePage({isLoaded}) {
                                 showDefaultInputIcon
                             />
                         </div>
-                        <button type='submit'>Submit</button>
+                        <div>
+                            <button type='submit'>Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
             <div className='categories-area'>
                 <h2>Categories</h2>
-                <h4>4k</h4>
-                <h4>1080p</h4>
-                <h4>720p</h4>
+                <div className='category-section'>
+                    <h4>4k</h4>
+                    <p>The best planes with unending service</p>
+                </div>
+                <div className='category-section'>
+                    <h4>1080p</h4>
+                    <p>The best planes with unending service</p>
+                </div>
+                <div className='category-section'>
+                    <h4>720p</h4>
+                    <p>Getting everyone from point A to B </p>
+                </div>
             </div>
         </>
     )
