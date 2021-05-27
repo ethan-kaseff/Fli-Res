@@ -20,29 +20,29 @@ function App() {
 
   return isLoaded && (
     <>
-      <div className='all-content'>
-        <Navigation isLoaded={isLoaded} />
-        {isLoaded && (
-          <Switch>
-            <Route exact path='/'>
-              <HomePage />
-            </Route>
-            <Route path="/login">
-              <Navigation isLoaded={isLoaded} />
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route path='/planes/:planeId'>
-              <PlaneProfile />
-            </Route>
-            <Route path='/searchResults'>
-              <SearchResults /> 
-            </Route>
-          </Switch>
-        )}
-      </div>
+      {isLoaded && (
+        <Switch>
+          <Route exact path='/'>
+            <HomePage isLoaded={isLoaded}/>
+          </Route>
+          <Route path="/login">
+            <Navigation isLoaded={isLoaded} />
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <Navigation isLoaded={isLoaded} />
+            <SignupFormPage />
+          </Route>
+          <Route path='/planes/:planeId'>
+            <Navigation isLoaded={isLoaded} />
+            <PlaneProfile />
+          </Route>
+          <Route path='/searchResults'>
+            <Navigation isLoaded={isLoaded} />
+            <SearchResults /> 
+          </Route>
+        </Switch>
+      )}
     </>
   );
 }
