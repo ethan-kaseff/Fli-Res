@@ -1,9 +1,10 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
-import 'react-dates/initialize';
+
 import { DateRangePicker} from 'react-dates';
+import DataListInput from 'react-datalist-input';
 
 import 'react-dates/lib/css/_datepicker.css';
 import './HomePage.css';
@@ -18,6 +19,8 @@ function HomePage({isLoaded}) {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setfocusedInput] = useState(null);
+
+    const [state, setState] = useState();
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,42 +30,70 @@ function HomePage({isLoaded}) {
         history.push(`/searchResults`);
     }
 
+    const items = [
+        {
+            key: 1,
+            label: 'Kansas'
+        }, 
+        {
+            key: 2,
+            label: 'Missouri'
+        },
+        {
+            key: 3,
+            label: 'California'
+        },
+        {
+            key: 4,
+            label: 'Wisconsin'
+        },
+    ]
+
+    const onSelect = useCallback((selectedItem) => {
+        setState(selectedItem);
+    })
+
     return (
         <>
-            <div className='main-area'>
+            <div className='home-page-main-area'>
                 <div className='nav-organizer'></div>
-                <div>
-                    <h1>Experience the skies in Fli-Res</h1>
-                </div>
-                <div >
-                    <form onSubmit={handleSubmit} className='search-bar'>
+                <div className='photo-box'>
+                    <div className='mottoo'>
+                        <div></div>
                         <div>
-                            <label>State:</label>
-                            <select id='state'>
-                                <option value='Kansas'>Kansas</option>
-                                <option value='Missouri'>Missouri</option>
-                            </select>
+                            <h1>Experience the skies in Fli-Res</h1>
                         </div>
-                        <div>
-                            <label>Date Picker:</label>
-                            <DateRangePicker
-                                startDate={startDate} // momentPropTypes.momentObj or null,
-                                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                                endDate={endDate} // momentPropTypes.momentObj or null,
-                                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                                onDatesChange={({ startDate, endDate }) => {
-                                    setStartDate(startDate);
-                                    setEndDate(endDate);
-                                }} // PropTypes.func.isRequired,
-                                focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
-                                showDefaultInputIcon
-                            />
-                        </div>
-                        <div>
-                            <button type='submit'>Submit</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div className='search-bar-container'>
+                        <form onSubmit={handleSubmit} className='search-bar'>
+                            <div className='autocomplete-div'>
+                                <DataListInput
+                                    placeholder="Select a State..."
+                                    items={items}
+                                    onSelect={onSelect}
+                                />
+                            </div>
+                            <div>
+                                <DateRangePicker
+                                    startDate={startDate} // momentPropTypes.momentObj or null,
+                                    startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                                    endDate={endDate} // momentPropTypes.momentObj or null,
+                                    endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                                    onDatesChange={({ startDate, endDate }) => {
+                                        setStartDate(startDate);
+                                        setEndDate(endDate);
+                                    }} // PropTypes.func.isRequired,
+                                    focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                    onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
+                                    showDefaultInputIcon
+                                />
+                            </div>
+                            <div>
+                                <button type='submit' id='search-submit'>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
             <div className='categories-area'>

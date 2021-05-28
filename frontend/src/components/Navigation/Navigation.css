@@ -12,6 +12,16 @@ nav {
     padding: 10px;
 }
 
+nav > div > a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: rgb(143, 221, 245);
+    font-weight: bold;
+}
+
 
 
 

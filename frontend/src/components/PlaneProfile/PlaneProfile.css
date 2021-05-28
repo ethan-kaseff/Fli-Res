@@ -1,7 +1,16 @@
-.pokemon-detail-image {
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 500px;
-  transition: height 0.5s;
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 1fr ;
+}
+
+.datepicker {
+  margin: 20px;
+  top: 20px;
+  position: sticky;
+}
+
+.image {
+
+  height: 400px;
+  object-fit: cover;
 }

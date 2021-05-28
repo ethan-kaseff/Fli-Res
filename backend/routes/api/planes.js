@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const { Booking, Plane } = require('../../db/models')
+const { Booking, Plane, Category } = require('../../db/models')
 
 const router = express.Router();
 
