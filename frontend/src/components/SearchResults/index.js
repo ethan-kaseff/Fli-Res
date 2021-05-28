@@ -1,11 +1,14 @@
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 import './SearchResults.css';
 
+import {updateCurrentBookings} from '../../store/booking';
+
 
 function SearchResults() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const availablePlanes = useSelector(state => state.plane.availablePlanes);
 
     const planeArr = []; 
@@ -16,10 +19,6 @@ function SearchResults() {
     };
 
     // Card Click Function
-
-    const cardClick = (id) => {
-        history.push(`/planes/${id}`)
-    }
 
     return (
         <>
@@ -37,7 +36,9 @@ function SearchResults() {
                                 {
                                     planeArr.map( plane => {
                                         return (
-                                            <card onClick={() => history.push(`/planes/${plane.id}`)}className= 'plane-card'>
+                                            <card onClick={() => {
+                                                history.push(`/planes/${plane.id}`)
+                                            }} className= 'plane-card'>
                                             <img className='plane-image' src={plane.imageLink} alt=''></img>
                                             <div className='plane-info'>
                                                 <h3>{plane.name}</h3>

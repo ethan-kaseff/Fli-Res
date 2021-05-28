@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import Moment from "moment";
+import { extendMoment } from "moment-range";
+
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 import {getPlanes} from '../../store/plane';
 import {createBooking} from '../../store/booking';
+import {updateCurrentBookings} from '../../store/booking';
 
 
 import './PlaneProfile.css';
@@ -15,18 +19,38 @@ function PlaneProfile() {
     const dispatch = useDispatch();
     const { planeId } = useParams();
 
-    
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setfocusedInput] = useState(null);
     
     useEffect(() => {
         dispatch(getPlanes());
-    }, [dispatch])
+        dispatch(updateCurrentBookings(planeId))
+    }, [dispatch, planeId])
     
     const plane = useSelector(state => state.plane[planeId]);
     const user = useSelector(state => state.session.user);
     const dates = useSelector(state => state.booking);
+    const currentBookings = useSelector(state => state.booking.currentBookings);
+
+    const currentBookingsArr = [];
+    for (const key in currentBookings) {
+        currentBookingsArr.push(currentBookings[key])
+    }
+
+    const isBlocked = date => {
+        let bookedRanges = [];
+        let blocked;
+        currentBookingsArr.map(booking => {
+            return bookedRanges = [...bookedRanges,
+            Moment.range(booking.startDate, booking.endDate)]
+        }
+        );
+        blocked = bookedRanges.find(range => range.contains(date));
+        return blocked;
+    };
+
+
     
     useEffect( () => {
         if (dates) {
@@ -34,7 +58,7 @@ function PlaneProfile() {
             setEndDate(dates.endDate);
         }
 
-    }, [])
+    }, [dates])
 
     const bookIt = (e) => {
         e.preventDefault();
@@ -83,6 +107,7 @@ function PlaneProfile() {
                                 focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                 onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
                                 showDefaultInputIcon
+                                // isDayBlocked={isBlocked}
                             />
                             <button type='submit'>Book</button>
 

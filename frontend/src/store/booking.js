@@ -1,5 +1,6 @@
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const CURRENT_DATES = 'bookings/CURRENT_DATES';
+const CURRENT_BOOKINGS = 'bookings/CURRENT_BOOKINGS';
 
 // Action Creator
 
@@ -11,6 +12,11 @@ const create = booking => ({
 const saveDates = dates => ({
     type: CURRENT_DATES,
     dates
+})
+
+const currentBookings = bookings => ({
+    type: CURRENT_BOOKINGS,
+    bookings
 })
 
 // Thunk Action Creator
@@ -43,6 +49,16 @@ export const saveCurrentDates = (startDate, endDate) => async dispatch => {
     }))
 }
 
+export const updateCurrentBookings = (id) => async dispatch => {
+    console.log('yup we are here  ===============')
+    const response = await fetch(`/api/bookings/byPlane/${id}`)
+    if (response.ok) {
+        const bookings = await response.json();
+        dispatch(currentBookings(bookings))
+        console.log('sent bookings ')
+    }
+}
+
 
 
 
@@ -56,6 +72,12 @@ const bookingReducer = (state = initialState, action) => {
                 ...state,
                 startDate: action.dates.startDate,
                 endDate: action.dates.endDate
+            }
+        }
+        case CURRENT_BOOKINGS: {
+            return {
+                ...state, 
+                currentBookings: action.bookings
             }
         }
         default:

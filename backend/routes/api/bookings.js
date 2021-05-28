@@ -12,7 +12,17 @@ router.post('/', asyncHandler(async function (req, res) {
 
 }))
 
+router.get('/byPlane/:id', asyncHandler(async function (req, res) {
+    const {id} = req.params;
 
+    const bookings = await Booking.findAll({
+        where: {
+            planeId: id
+        }
+    })
+
+    return res.json(bookings);
+}))
 
 
 

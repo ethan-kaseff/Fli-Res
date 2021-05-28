@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
+    "moment-range": "^4.0.2",
     "react": "^16.14.0",
     "react-datalist-input": "^2.2.1",
     "react-dates": "^21.8.0",
