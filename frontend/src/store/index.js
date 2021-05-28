@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import sessionReducer from './session';
 import planeReducer from './plane';
+import bookingReducer from './booking';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    plane: planeReducer
+    plane: planeReducer,
+    booking: bookingReducer,
 });
 
 let enhancer;

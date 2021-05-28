@@ -10,6 +10,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import './HomePage.css';
 
 import {getAvailablePlanes} from '../../store/plane';
+import {saveCurrentDates} from '../../store/booking';
 
 
 function HomePage({isLoaded}) {
@@ -20,10 +21,13 @@ function HomePage({isLoaded}) {
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setfocusedInput] = useState(null);
 
+    // For the DataList
     const [state, setState] = useState();
     
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        dispatch(saveCurrentDates(startDate, endDate))
 
         dispatch(getAvailablePlanes(startDate, endDate))
 

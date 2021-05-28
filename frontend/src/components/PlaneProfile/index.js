@@ -6,6 +6,7 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 import {getPlanes} from '../../store/plane';
+import {createBooking} from '../../store/booking';
 
 
 import './PlaneProfile.css';
@@ -14,18 +15,31 @@ function PlaneProfile() {
     const dispatch = useDispatch();
     const { planeId } = useParams();
 
+    
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setfocusedInput] = useState(null);
-
+    
     useEffect(() => {
         dispatch(getPlanes());
     }, [dispatch])
-
+    
     const plane = useSelector(state => state.plane[planeId]);
+    const user = useSelector(state => state.session.user);
+    const dates = useSelector(state => state.booking);
+    
+    useEffect( () => {
+        if (dates) {
+            setStartDate(dates.startDate);
+            setEndDate(dates.endDate);
+        }
 
-    const bookIt = () => {
-        
+    }, [])
+
+    const bookIt = (e) => {
+        e.preventDefault();
+        dispatch(createBooking(user.id, planeId, startDate, endDate));
+        console.log('something')
     }
 
 
@@ -43,29 +57,36 @@ function PlaneProfile() {
                     <h3>Description</h3>
                     <p>{plane.description}</p>
                     <h3>Plane Facts</h3>
-                    <label>Refill Miles: </label>
-                    <span>{plane.refillMiles}</span>
-                    <label>Year Built: </label>
-                    <span>{plane.yearBuilt}</span>
-                    <label>Zip Code Location: </label>
-                    <span>{plane.zipCode}</span>
+                    <div className='plane-facts'>
+                        <label>Refill Miles: </label>
+                        <span>{plane.refillMiles}</span>
+                        <br></br>
+                        <label>Year Built: </label>
+                        <span>{plane.yearBuilt}</span>
+                        <br></br>
+                        <label>Zip Code Location: </label>
+                        <span>{plane.zipCode}</span>
+                    </div>
                 </div>
                 <div className='booking-space'>
                     <div className='datepicker'>
-                        <DateRangePicker
-                            startDate={startDate} // momentPropTypes.momentObj or null,
-                            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                            endDate={endDate} // momentPropTypes.momentObj or null,
-                            endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                            onDatesChange={({ startDate, endDate }) => {
-                                setStartDate(startDate);
-                                setEndDate(endDate);
-                            }} // PropTypes.func.isRequired,
-                            focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                            onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
-                            showDefaultInputIcon
-                        />
-                        <button onclick={bookIt}>Book</button>
+                        <form onSubmit={bookIt}>
+                            <DateRangePicker
+                                startDate={startDate} // momentPropTypes.momentObj or null,
+                                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                                endDate={endDate} // momentPropTypes.momentObj or null,
+                                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                                onDatesChange={({ startDate, endDate }) => {
+                                    setStartDate(startDate);
+                                    setEndDate(endDate);
+                                }} // PropTypes.func.isRequired,
+                                focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
+                                showDefaultInputIcon
+                            />
+                            <button type='submit'>Book</button>
+
+                        </form>
                     </div>
                 </div>
                 <div></div>
