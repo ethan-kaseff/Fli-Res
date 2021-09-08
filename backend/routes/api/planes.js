@@ -59,19 +59,6 @@ router.get('/available/:startDate/:endDate', asyncHandler( async function (req, 
 }))
 
 
-// [Op.or]: {
-//     [Op.between]: [startDate, endDate]
-// }
-
-// [Op.or]: {
-//     [Op.between]: [startDate, endDate]
-
-// }
-
-
-
-
-
 
 
 
