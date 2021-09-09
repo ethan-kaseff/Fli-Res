@@ -1,3 +1,5 @@
+import {csrfFetch} from './csrf';
+
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const CURRENT_DATES = 'bookings/CURRENT_DATES';
 const CURRENT_BOOKINGS = 'bookings/CURRENT_BOOKINGS';
@@ -22,7 +24,7 @@ const currentBookings = bookings => ({
 // Thunk Action Creator
 export const createBooking = (userId, planeId, startDate, endDate) => async dispatch => {
     console.log('before the fetch')
-    const response = await fetch('api/bookings', {
+    const response = await csrfFetch('/api/bookings', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
