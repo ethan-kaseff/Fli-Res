@@ -2,6 +2,10 @@
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
+const Booking = require('./booking')
+const Review = require('./review')
+
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
@@ -82,6 +86,14 @@ module.exports = (sequelize, DataTypes) => {
     console.log('++++++++++++++++++++++++++++++', user);
     if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);
+
+      // const returnUser = await User.scope('currentUser').findOne({
+      //   where: { id: user.id },
+      //   include: sequelize.,
+      // });
+
+      // return returnUser
+
     }
   };
   User.signup = async function ({ username, email, password }) {

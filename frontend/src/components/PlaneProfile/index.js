@@ -35,8 +35,15 @@ function PlaneProfile() {
 
     const currentBookingsArr = [];
     for (const key in currentBookings) {
-        currentBookingsArr.push(currentBookings[key])
+        console.log(currentBookings[key].planeId)
+        console.log('planeId', planeId)
+        if (currentBookings[key].planeId === planeId) {
+            console.log('yay')
+            currentBookingsArr.push(currentBookings[key])
+        }
+        console.log(currentBookingsArr)
     }
+
 
     const isBlocked = date => {
         let bookedRanges = [];

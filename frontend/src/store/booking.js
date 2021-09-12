@@ -3,6 +3,7 @@ import {csrfFetch} from './csrf';
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const CURRENT_DATES = 'bookings/CURRENT_DATES';
 const CURRENT_BOOKINGS = 'bookings/CURRENT_BOOKINGS';
+const USER_BOOKINGS = 'bookings/USER_BOOKINGS';
 
 // Action Creator
 
@@ -53,7 +54,8 @@ export const saveCurrentDates = (startDate, endDate) => async dispatch => {
 
 export const updateCurrentBookings = (id) => async dispatch => {
     console.log('yup we are here  ===============')
-    const response = await fetch(`/api/bookings/byPlane/${id}`)
+    // const response = await fetch(`/api/bookings/byPlane/${id}`)
+    const response = await fetch(`/api/bookings`)
     if (response.ok) {
         const bookings = await response.json();
         dispatch(currentBookings(bookings))
@@ -80,6 +82,12 @@ const bookingReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 currentBookings: action.bookings
+            }
+        }
+        case USER_BOOKINGS: {
+            return {
+                ...state, 
+                userBookings: action.bookings
             }
         }
         default:
