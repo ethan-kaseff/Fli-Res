@@ -22,6 +22,11 @@ const currentBookings = bookings => ({
     bookings
 })
 
+const userBookings = bookings => ({
+    type: USER_BOOKINGS,
+    bookings
+})
+
 // Thunk Action Creator
 export const createBooking = (userId, planeId, startDate, endDate) => async dispatch => {
     console.log('before the fetch')
@@ -53,13 +58,20 @@ export const saveCurrentDates = (startDate, endDate) => async dispatch => {
 }
 
 export const updateCurrentBookings = (id) => async dispatch => {
-    console.log('yup we are here  ===============')
     // const response = await fetch(`/api/bookings/byPlane/${id}`)
     const response = await fetch(`/api/bookings`)
     if (response.ok) {
         const bookings = await response.json();
         dispatch(currentBookings(bookings))
-        console.log('sent bookings ')
+    }
+}
+
+export const updateUserBookings = (id) => async dispatch => {
+    // const response = await fetch(`/api/bookings/byPlane/${id}`)
+    const response = await fetch(`/api/bookings/${id}`)
+    if (response.ok) {
+        const bookings = await response.json();
+        dispatch(userBookings(bookings))
     }
 }
 

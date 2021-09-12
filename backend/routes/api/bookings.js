@@ -25,6 +25,19 @@ router.get('/byPlane/:id', asyncHandler(async function (req, res) {
 }))
 
 
+router.get('/:id', asyncHandler(async function (req, res) {
+    const {id} = req.params;
+
+    const bookings = await Booking.findAll({
+        where: {
+            userId: id
+        }
+    })
+
+    return res.json(bookings);
+}))
+
+
 router.get('/', asyncHandler(async function (req, res) {
     const bookings = await Booking.findAll()
 
