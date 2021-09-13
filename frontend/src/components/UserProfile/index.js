@@ -3,6 +3,8 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import { updateUserBookings } from '../../store/booking';
 
+import BookingCards from './BookingCard';
+
 function UserProfile() {
   const dispatch = useDispatch();
 
@@ -13,15 +15,12 @@ function UserProfile() {
     dispatch(updateUserBookings(userId))
   }, [dispatch, userId])
 
-  console.log(bookings)
-
-
   return (
     <>
       <div className='nav-organizer'></div>
       <div>
         <h1>{userId}</h1>
-        {/* <p>{bookings}</p> */}
+        <BookingCards bookings={bookings} />
       </div>
     </>
   )
