@@ -13,19 +13,35 @@ nav {
 }
 
 nav > div > a,
-.profile-button {
+.profile-button,
+i,
+.username {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    font-size: large;
 }
 
 a:hover,
-.profile-button:hover {
+.profile-button:hover,
+i:hover {
     color: rgb(143, 221, 245);
     font-weight: bold;
 }
 
 .profile-dropdown {
-    background-color: rgb(67, 121, 221, .4);
+    /* background-color: rgba(245, 120, 18, 0.4); */
+    padding: 5px;
+    padding-top: 20px;
+}
+
+.bars {
+    text-align: right;
+}
+
+button {
+    padding: 1px;
+    margin: 2px;
 }
 
 
