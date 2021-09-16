@@ -22,6 +22,10 @@ i,
     font-size: large;
 }
 
+.username {
+    color: black;
+}
+
 a:hover,
 .profile-button:hover,
 i:hover {

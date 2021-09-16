@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
+import ReactCSSTransitionGroup from 'react-transition-group';
+
 import { deleteBooking } from '../../../store/booking';
 
 function BookingCards({bookingss}) {
@@ -33,22 +35,28 @@ function BookingCards({bookingss}) {
 
   return (
     <div>
-      { bookings && 
-      bookingsArr.map(booking => {
-        return (
-          <div className="booking" key={booking.id}>
-            <h3>{`${booking.Plane.name} - Booking #${booking.id}`}</h3>
-            <img src={booking.Plane.imageLink} alt='Plane'></img>
-            <h4>Date: <span>{`${booking.startDate} -> ${booking.endDate}`}</span></h4>
-            <button onClick={() => {
-              dispatch(deleteBooking(booking.id))
-              delete bookingState[booking.id]
-              setbookingState(bookingState)
-              console.log('bookingSTate', bookingState)
-            }}>Delete</button>
-          </div>
-        )
-      })}
+      {/* {bookings &&
+        <ReactCSSTransitionGroup
+          transitionName='fade'
+          transitionLeaveTimeout={300}> */}
+          { bookings && 
+          bookingsArr.map(booking => {
+            return (
+              <div className="booking" key={booking.id}>
+                <h3>{`${booking.Plane.name} - Booking #${booking.id}`}</h3>
+                <img src={booking.Plane.imageLink} alt='Plane'></img>
+                <h4>Date: <span>{`${booking.startDate} -> ${booking.endDate}`}</span></h4>
+                <button onClick={() => {
+                  dispatch(deleteBooking(booking.id))
+                  delete bookingState[booking.id]
+                  setbookingState(bookingState)
+                  console.log('bookingSTate', bookingState)
+                }}>Delete</button>
+              </div>
+            )
+          })}
+        {/* </ReactCSSTransitionGroup>
+      } */}
     </div>
   )
 }
