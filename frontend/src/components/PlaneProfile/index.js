@@ -35,13 +35,9 @@ function PlaneProfile() {
 
     const currentBookingsArr = [];
     for (const key in currentBookings) {
-        console.log(currentBookings[key].planeId)
-        console.log('planeId', planeId)
         if (currentBookings[key].planeId === planeId) {
-            console.log('yay')
             currentBookingsArr.push(currentBookings[key])
         }
-        console.log(currentBookingsArr)
     }
 
 
@@ -70,7 +66,6 @@ function PlaneProfile() {
     const bookIt = (e) => {
         e.preventDefault();
         dispatch(createBooking(user.id, planeId, startDate, endDate));
-        console.log('something')
     }
 
 
