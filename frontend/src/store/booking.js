@@ -35,7 +35,6 @@ const removeBooking = id => ({
 
 // Thunk Action Creator
 export const createBooking = (userId, planeId, startDate, endDate) => async dispatch => {
-    console.log('before the fetch')
     const response = await csrfFetch('/api/bookings', {
         method: 'POST',
         headers: {
@@ -48,8 +47,6 @@ export const createBooking = (userId, planeId, startDate, endDate) => async disp
             endDate
         })
     })
-
-    console.log('made it to thunk')
 
     if (response.ok) {
         const list = await response.json();
@@ -82,14 +79,11 @@ export const updateUserBookings = (id) => async dispatch => {
 }
 
 export const deleteBooking = (id) => async dispatch => {
-    console.log('we are here in the delete booking thunk')
     const response = await csrfFetch(`/api/bookings/delete/${id}`, {
         method: 'POST',
     })
-    console.log("But do we actually get to the point after it or not?")
     // if (response.ok) {
     // const booking = await response.json();
-    // console.log(booking)
     dispatch(removeBooking(id))
     // }
 }

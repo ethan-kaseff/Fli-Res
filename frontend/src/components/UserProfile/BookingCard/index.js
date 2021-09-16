@@ -8,13 +8,9 @@ import { deleteBooking } from '../../../store/booking';
 function BookingCards({bookingss}) {
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.booking.userBookings)
-  // const [bookingState, setbookingState] = useState(bookings)
   const [bookingsArr, setbookingsArr] = useState([])
 
-  // let bookingsArr = []
-
   useEffect(() => {
-    // setbookingState(bookings)
 
     if (bookings) {
       const arr = []
