@@ -115,11 +115,7 @@ const bookingReducer = (state = initialState, action) => {
             }
         }
         case USER_BOOKINGS: {
-            let newState = {...state};
-
             const userBookings = {};
-
-            console.log(action.bookings)
 
             for (const key in action.bookings) {
                 userBookings[action.bookings[key].id] = action.bookings[key]
@@ -128,7 +124,7 @@ const bookingReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                userBookings
+                userBookings: userBookings
             }
 
             // return {
@@ -139,17 +135,11 @@ const bookingReducer = (state = initialState, action) => {
         case DELETE_BOOKING: {
             let newState = {...state}
 
-            console.log(newState)
-            console.log(action.id)
+            delete newState.userBookings[action.id]
 
-            // delete newState.bookings.userBookings[action.id]
-            console.log(newState)
+            const newUserBookings = {...newState.userBookings}
 
-            return newState
-            // return {
-            //     ...state,
-            //     something: 'something'
-            // }
+            return {...newState, userBookings: newUserBookings}
         }
         default:
             return state;

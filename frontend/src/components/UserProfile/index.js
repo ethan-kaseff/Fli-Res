@@ -13,7 +13,7 @@ function UserProfile() {
 
   useEffect(() => {
     dispatch(updateUserBookings(userId))
-  }, [dispatch, userId])
+  }, [])
 
   return (
     <>

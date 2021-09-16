@@ -12,14 +12,20 @@ nav {
     padding: 10px;
 }
 
-nav > div > a {
+nav > div > a,
+.profile-button {
     text-decoration: none;
     color: white;
 }
 
-a:hover {
+a:hover,
+.profile-button:hover {
     color: rgb(143, 221, 245);
     font-weight: bold;
+}
+
+.profile-dropdown {
+    background-color: rgb(67, 121, 221, .4);
 }
 
 
