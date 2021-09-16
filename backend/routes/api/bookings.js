@@ -1,17 +1,32 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Booking } = require('../../db/models')
+const { Booking, Plane } = require('../../db/models')
 
 const router = express.Router();
 
-// Create a new booking
-router.post('/', asyncHandler(async function (req, res) {
-    const booking = await Booking.create(req.body);
-    return res.json(booking);
+// Get all bookings
+router.get('/', asyncHandler(async function (req, res) {
+    const bookings = await Booking.findAll()
 
+    return res.json(bookings);
 }))
 
+// Get bookings by User Id and include plane info
+router.get('/:id', asyncHandler(async function (req, res) {
+    const { id } = req.params;
+
+    const bookings = await Booking.findAll({
+        where: {
+            userId: id
+        },
+        include: Plane
+    })
+
+    return res.json(bookings);
+}))
+
+// Get bookings by planeId 
 router.get('/byPlane/:id', asyncHandler(async function (req, res) {
     const {id} = req.params;
 
@@ -24,7 +39,26 @@ router.get('/byPlane/:id', asyncHandler(async function (req, res) {
     return res.json(bookings);
 }))
 
+// Create a new booking
+router.post('/', asyncHandler(async function (req, res) {
+    const booking = await Booking.create(req.body);
+    return res.json(booking);
 
+}))
+
+// Delete Booking
+router.post('/delete/:bookingId', asyncHandler( async (req, res) => {
+    const { bookingId } = req.params;
+
+    const booking = await Booking.findByPk(bookingId)
+
+    if (booking) {
+        await booking.destroy()
+        res.end()
+        return booking
+    }
+
+}))
 
 
 

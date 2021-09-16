@@ -12,6 +12,7 @@ import Navigation from './components/Navigation';
 import PlaneProfile from './components/PlaneProfile';
 import HomePage from './components/HomePage';
 import SearchResults from './components/SearchResults';
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ function App() {
           <Route path='/planes/:planeId'>
             {/* <Navigation isLoaded={isLoaded} /> */}
             <PlaneProfile />
+          </Route>
+          <Route path='/profile'>
+            {/* <Navigation isLoaded={isLoaded} /> */}
+            <UserProfile />
           </Route>
           <Route path='/searchResults'>
             {/* <Navigation isLoaded={isLoaded} /> */}

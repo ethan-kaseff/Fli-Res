@@ -12,14 +12,40 @@ nav {
     padding: 10px;
 }
 
-nav > div > a {
+nav > div > a,
+.profile-button,
+i,
+.username {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    font-size: large;
 }
 
-a:hover {
+.username {
+    color: black;
+}
+
+a:hover,
+.profile-button:hover,
+i:hover {
     color: rgb(143, 221, 245);
     font-weight: bold;
+}
+
+.profile-dropdown {
+    /* background-color: rgba(245, 120, 18, 0.4); */
+    padding: 5px;
+    padding-top: 20px;
+}
+
+.bars {
+    text-align: right;
+}
+
+button {
+    padding: 1px;
+    margin: 2px;
 }
 
 

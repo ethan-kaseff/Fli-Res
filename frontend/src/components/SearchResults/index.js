@@ -15,7 +15,6 @@ function SearchResults() {
 
     for (const key in availablePlanes) {
         planeArr.push(availablePlanes[key]);
-        console.log(`individual plane`, availablePlanes[key])
     };
 
     // Card Click Function

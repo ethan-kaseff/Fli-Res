@@ -35,8 +35,11 @@ function PlaneProfile() {
 
     const currentBookingsArr = [];
     for (const key in currentBookings) {
-        currentBookingsArr.push(currentBookings[key])
+        if (currentBookings[key].planeId === planeId) {
+            currentBookingsArr.push(currentBookings[key])
+        }
     }
+
 
     const isBlocked = date => {
         let bookedRanges = [];
@@ -63,7 +66,6 @@ function PlaneProfile() {
     const bookIt = (e) => {
         e.preventDefault();
         dispatch(createBooking(user.id, planeId, startDate, endDate));
-        console.log('something')
     }
 
 

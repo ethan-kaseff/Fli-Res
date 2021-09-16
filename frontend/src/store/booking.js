@@ -1,6 +1,10 @@
+import {csrfFetch} from './csrf';
+
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const CURRENT_DATES = 'bookings/CURRENT_DATES';
 const CURRENT_BOOKINGS = 'bookings/CURRENT_BOOKINGS';
+const USER_BOOKINGS = 'bookings/USER_BOOKINGS';
+const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
 
 // Action Creator
 
@@ -19,10 +23,19 @@ const currentBookings = bookings => ({
     bookings
 })
 
+const userBookings = bookings => ({
+    type: USER_BOOKINGS,
+    bookings
+})
+
+const removeBooking = id => ({
+    type: DELETE_BOOKING,
+    id
+})
+
 // Thunk Action Creator
 export const createBooking = (userId, planeId, startDate, endDate) => async dispatch => {
-    console.log('before the fetch')
-    const response = await fetch('api/bookings', {
+    const response = await csrfFetch('/api/bookings', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,8 +47,6 @@ export const createBooking = (userId, planeId, startDate, endDate) => async disp
             endDate
         })
     })
-
-    console.log('made it to thunk')
 
     if (response.ok) {
         const list = await response.json();
@@ -50,15 +61,32 @@ export const saveCurrentDates = (startDate, endDate) => async dispatch => {
 }
 
 export const updateCurrentBookings = (id) => async dispatch => {
-    console.log('yup we are here  ===============')
-    const response = await fetch(`/api/bookings/byPlane/${id}`)
+    // const response = await fetch(`/api/bookings/byPlane/${id}`)
+    const response = await fetch(`/api/bookings`)
     if (response.ok) {
         const bookings = await response.json();
         dispatch(currentBookings(bookings))
-        console.log('sent bookings ')
     }
 }
 
+export const updateUserBookings = (id) => async dispatch => {
+    // const response = await fetch(`/api/bookings/byPlane/${id}`)
+    const response = await fetch(`/api/bookings/${id}`)
+    if (response.ok) {
+        const bookings = await response.json();
+        dispatch(userBookings(bookings))
+    }
+}
+
+export const deleteBooking = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/delete/${id}`, {
+        method: 'POST',
+    })
+    // if (response.ok) {
+    // const booking = await response.json();
+    dispatch(removeBooking(id))
+    // }
+}
 
 
 
@@ -79,6 +107,33 @@ const bookingReducer = (state = initialState, action) => {
                 ...state, 
                 currentBookings: action.bookings
             }
+        }
+        case USER_BOOKINGS: {
+            const userBookings = {};
+
+            for (const key in action.bookings) {
+                userBookings[action.bookings[key].id] = action.bookings[key]
+
+            }
+
+            return {
+                ...state,
+                userBookings: userBookings
+            }
+
+            // return {
+            //     ...state, 
+            //     userBookings: action.bookings
+            // }
+        }
+        case DELETE_BOOKING: {
+            let newState = {...state}
+
+            delete newState.userBookings[action.id]
+
+            const newUserBookings = {...newState.userBookings}
+
+            return {...newState, userBookings: newUserBookings}
         }
         default:
             return state;
