@@ -1,5 +1,15 @@
-.profile-container {
+/* .profile-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    max-width: 600px;
+} */
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.booking-image {
+    width: fit-content;
 }
