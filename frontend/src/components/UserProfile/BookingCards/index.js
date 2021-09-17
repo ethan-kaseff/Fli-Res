@@ -27,7 +27,7 @@ function BookingCards() {
       }
       setbookingsArr(arr)
     }
-  }, [bookings, bookingsArr])
+  }, [bookings])
 
 
   return (
