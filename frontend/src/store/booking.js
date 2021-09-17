@@ -88,6 +88,19 @@ export const deleteBooking = (id) => async dispatch => {
     // }
 }
 
+export const editBooking = (id, startDate, endDate) => async dispatch => {
+    const response = await csrfFetch('/api/bookings/edit', {
+        method: 'PATCH',
+        body: JSON.stringify({
+            id, 
+            startDate,
+            endDate
+        })
+    })
+
+    dispatch()
+}
+
 
 
 const initialState = {}
