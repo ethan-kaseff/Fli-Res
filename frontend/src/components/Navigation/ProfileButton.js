@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
                 {/* <i className="fas fa-user-circle" />
                 <i className="far fa-user"></i> */}
                 {/* <h3 className='profile-button'>{user.username}</h3> */}
-                <i class="fas fa-bars fa-lg"></i>
+                <i className="fas fa-bars fa-lg"></i>
             </div>
             {showMenu && (
                 <div className="profile-dropdown">
