@@ -3,10 +3,9 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import ReactCSSTransitionGroup from 'react-transition-group';
 
-import { deleteBooking } from '../../../store/booking';
+import BookingCard from './BookingCard';
 
-function BookingCards({bookingss}) {
-  const dispatch = useDispatch();
+function BookingCards() {
   const bookings = useSelector(state => state.booking.userBookings)
   const [bookingsArr, setbookingsArr] = useState([])
 
@@ -40,12 +39,7 @@ function BookingCards({bookingss}) {
           { bookings && 
           bookingsArr.map(booking => {
             return (
-              <div className="booking" key={booking.id}>
-                <h3>{`${booking.Plane.name} - Booking #${booking.id}`}</h3>
-                <img src={booking.Plane.imageLink} alt='Plane'></img>
-                <h4>Date: <span>{`${booking.startDate} -> ${booking.endDate}`}</span></h4>
-                <button onClick={() => dispatch(deleteBooking(booking.id))}>Delete</button>
-              </div>
+              <BookingCard booking={booking} />
             )
           })}
         {/* </ReactCSSTransitionGroup>

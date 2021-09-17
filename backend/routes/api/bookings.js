@@ -60,6 +60,21 @@ router.post('/delete/:bookingId', asyncHandler( async (req, res) => {
 
 }))
 
+// Edit a booking 
+
+router.post('/edit', asyncHandler(async (req, res) => {
+    const { id, startDate, endDate } = req.body;
+
+    const booking = await Booking.findByPk(bookingId)
+
+    booking.startDate = startDate;
+    booking.endDate = endDate;
+
+    await booking.save();
+
+
+}))
+
 
 
 

@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import { updateUserBookings } from '../../store/booking';
 
-import BookingCards from './BookingCard';
+import BookingCards from './BookingCards';
 
 import './UserProfile.css';
 
@@ -27,7 +27,7 @@ function UserProfile() {
           <div>
             <h2>Your Bookings:</h2>
             {bookings && 
-              <BookingCards bookings={bookings} />
+              <BookingCards />
             }
             {!bookings && 
               <div>
