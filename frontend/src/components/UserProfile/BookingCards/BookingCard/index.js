@@ -69,9 +69,9 @@ function BookingCard({booking}) {
 
       </div>
       <div className='buttons'>
-        <button onClick={() => dispatch(deleteBooking(booking.id))}>Delete</button>
-        <button onClick={handleEdit} className={`${editHidden} edit-${booking.id}`}>Edit</button>
-        <button onClick={handleSave} className={`${saveHidden} save-${booking.id}`}>Save</button>
+        <button onClick={() => dispatch(deleteBooking(booking.id))} id='delete-button'>Delete</button>
+        <button onClick={handleEdit} className={`${editHidden} edit-${booking.id} edit-button`}>Edit</button>
+        <button onClick={handleSave} className={`${saveHidden} save-${booking.id} save-button`}>Save</button>
 
       </div>
 
