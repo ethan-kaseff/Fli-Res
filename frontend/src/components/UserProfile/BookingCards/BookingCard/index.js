@@ -13,6 +13,7 @@ function BookingCard({booking}) {
   const [saveHidden, setsaveHidden] = useState('hidden')
   const [editHidden, seteditHidden] = useState('')
   const [datePicker, setdatePicker] = useState('hidden')
+  const [spanHidden, setspanHidden] = useState('')
   let [startDate, setstartDate] = useState(null)
   let [endDate, setendDate] = useState(null)
 
@@ -31,12 +32,14 @@ function BookingCard({booking}) {
     seteditHidden('hidden');
     setsaveHidden('');
     setdatePicker('');
+    setspanHidden('hidden');
   }
 
   const handleSave = () => {
     setsaveHidden('hidden');
     seteditHidden('');
     setdatePicker('hidden');
+    setspanHidden('');
     dispatch(editBooking(booking.id, startDate, endDate))
   }
 
@@ -46,7 +49,7 @@ function BookingCard({booking}) {
       <img src={booking.Plane.imageLink} alt='Plane'></img>
       <div>
         <h4>Date: 
-          <span>{`${booking.startDate} -> ${booking.endDate}`}</span>
+          <span className={spanHidden}>{`${booking.startDate} -> ${booking.endDate}`}</span>
           <div className={`${datePicker}`}>
             <DateRangePicker
               startDate={startDate} // momentPropTypes.momentObj or null,
