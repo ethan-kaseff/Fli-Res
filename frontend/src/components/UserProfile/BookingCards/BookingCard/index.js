@@ -6,6 +6,7 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 import { deleteBooking } from '../../../../store/booking';
+import { editBooking } from '../../../../store/booking';
 
 function BookingCard({booking}) {
   const dispatch = useDispatch()
@@ -17,6 +18,15 @@ function BookingCard({booking}) {
 
   const [focusedInput, setfocusedInput] = useState(null);
 
+  // Set up DatePicker with current booking dates 
+  useEffect(() => {
+    const start = new moment(booking.startDate)
+    const end = new moment(booking.endDate)
+    setstartDate(start)
+    setendDate(end)
+  }, [booking])
+
+  // Edit button click handling 
   const handleEdit = () => {
     seteditHidden('hidden');
     setsaveHidden('');
@@ -27,25 +37,8 @@ function BookingCard({booking}) {
     setsaveHidden('hidden');
     seteditHidden('');
     setdatePicker('hidden');
+    dispatch(editBooking(booking.id, startDate, endDate))
   }
-
-  // const date = new Date(booking.startDate)
-  // console.log(date)
-  // console.log(typeof(date))
-
-  // console.log(booking.startDate)
-
-  useEffect(() => {
-    const start = new moment(booking.startDate)
-    const end = new moment(booking.endDate)
-    setstartDate(start)
-    setendDate(end)
-  }, [booking])
-
-  useEffect(() => {
-    console.log('startDate', startDate)
-    console.log('endDate', endDate)
-  }, [startDate, endDate])
 
   return (
     <div className="booking" key={booking.id}>
