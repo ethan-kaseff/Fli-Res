@@ -60,6 +60,33 @@ router.post('/delete/:bookingId', asyncHandler( async (req, res) => {
 
 }))
 
+// Edit a booking 
+router.patch('/edit', asyncHandler(async (req, res) => {
+    const { id, startDate, endDate } = req.body;
+
+    // const booking = await Booking.findOne({
+    //     where: {
+    //         id: id
+    //     },
+    //     include: Plane
+    // })
+
+    const booking = await Booking.findByPk(id)
+
+    booking.startDate = startDate;
+    booking.endDate = endDate;
+
+    await booking.save();
+
+    console.log('change was saved')
+
+    res.end()
+
+    console.log(booking)
+
+    return booking;
+}))
+
 
 
 

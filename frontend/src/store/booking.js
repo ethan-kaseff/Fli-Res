@@ -5,6 +5,7 @@ const CURRENT_DATES = 'bookings/CURRENT_DATES';
 const CURRENT_BOOKINGS = 'bookings/CURRENT_BOOKINGS';
 const USER_BOOKINGS = 'bookings/USER_BOOKINGS';
 const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
+const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
 
 // Action Creator
 
@@ -31,6 +32,11 @@ const userBookings = bookings => ({
 const removeBooking = id => ({
     type: DELETE_BOOKING,
     id
+})
+
+const editSingleBooking = booking => ({
+    type: EDIT_BOOKING,
+    booking
 })
 
 // Thunk Action Creator
@@ -88,9 +94,24 @@ export const deleteBooking = (id) => async dispatch => {
     // }
 }
 
+export const editBooking = (id, startDate, endDate) => async dispatch => {
+    const response = await csrfFetch('/api/bookings/edit', {
+        method: 'PATCH',
+        body: JSON.stringify({
+            id, 
+            startDate,
+            endDate
+        })
+    })
+    console.log('I got out of the fetch request! ')
+    console.log(response)
+    // const booking = await response.json()
+    dispatch(editSingleBooking({id, startDate, endDate}))
+    console.log('I have disaptched and made it out alive ')
+}
 
 
-const initialState = {}
+const initialState = {userBookings: {}}
 
 // Reducer
 const bookingReducer = (state = initialState, action) => {
@@ -134,6 +155,21 @@ const bookingReducer = (state = initialState, action) => {
             const newUserBookings = {...newState.userBookings}
 
             return {...newState, userBookings: newUserBookings}
+        }
+        case EDIT_BOOKING: {
+            let newState = {...state};
+
+            return {
+                ...state, 
+                userBookings: {
+                    ...state.userBookings,
+                    [action.booking.id]: {
+                        ...state.userBookings[action.booking.id],
+                        startDate: action.booking.startDate,
+                        endDate: action.booking.endDate
+                    }
+                }
+            }
         }
         default:
             return state;
