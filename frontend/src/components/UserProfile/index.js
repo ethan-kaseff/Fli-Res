@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 import { updateUserBookings } from '../../store/booking';
 
@@ -9,8 +10,16 @@ import './UserProfile.css';
 
 function UserProfile() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector(state => state.session.user)
+  useEffect(() => {
+    if (!user) {
+      history.push('/')
+    }
+    
+  }, [user])
+
   const bookings = useSelector(state => state.booking.userBookings)
 
   useEffect(() => {

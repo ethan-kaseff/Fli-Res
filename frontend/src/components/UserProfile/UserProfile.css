@@ -19,10 +19,6 @@
     flex-direction: row;
 }
 
-.hidden {
-    display: none;
-}
-
 .booking {
     background-color: cornflowerblue;
     margin: 6px;
@@ -39,7 +35,7 @@
     /* margin-right: 5px; */
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 16px;
 }
 
@@ -71,4 +67,8 @@
 .profile-info {
     /* margin: 15px; */
     /* padding: 15px; */
+}
+
+.hidden {
+    display: none;
 }
