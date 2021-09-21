@@ -6,8 +6,8 @@ import 'react-dates/initialize';
 
 import * as sessionActions from "./store/session";
 
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from './components/SignupFormPage';
+import LoginFormPage from "./components/LoginFormModal";
+import SignupFormPage from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import PlaneProfile from './components/PlaneProfile';
 import HomePage from './components/HomePage';

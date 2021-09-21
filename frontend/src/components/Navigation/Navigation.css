@@ -12,7 +12,20 @@ nav {
     padding: 10px;
 }
 
+nav > div > button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 nav > div > a,
+nav > div > button,
 .profile-button,
 i,
 .username {
@@ -26,6 +39,7 @@ i,
     color: black;
 }
 
+nav > div > button:hover,
 a:hover,
 .profile-button:hover,
 i:hover {
