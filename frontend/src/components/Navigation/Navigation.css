@@ -62,11 +62,39 @@ button {
     margin: 2px;
 }
 
-
-
-
-
-/* other option for padding stuff  */
-/* nav > * {
+.modal-box {
+    /* display: grid;
+    grid-template-columns: 2fr 4fr 1fr;
+    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(234, 234, 241);
+    /* width: 50vw; */
+    /* border: .5px solid black; */
+    border-radius: 10px;
     padding: 10px;
-} */
+}
+
+.modal-box > input {
+    padding: 2px;
+    margin: 2px;
+}
+
+.modal-box > button {
+    background-color: rgb(214, 134, 59);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 8px;
+    /* margin-right: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 16px; */
+}
+
+.modal-box > button:hover {
+    background-color: rgb(236, 162, 93);
+}

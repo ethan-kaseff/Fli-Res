@@ -6,8 +6,6 @@ import 'react-dates/initialize';
 
 import * as sessionActions from "./store/session";
 
-import LoginFormPage from "./components/LoginFormModal";
-import SignupFormPage from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import PlaneProfile from './components/PlaneProfile';
 import HomePage from './components/HomePage';
@@ -28,14 +26,6 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <HomePage isLoaded={isLoaded}/>
-          </Route>
-          <Route path="/login">
-            {/* <Navigation isLoaded={isLoaded} /> */}
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            {/* <Navigation isLoaded={isLoaded} /> */}
-            <SignupFormPage />
           </Route>
           <Route path='/planes/:planeId'>
             {/* <Navigation isLoaded={isLoaded} /> */}
