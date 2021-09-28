@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Moment from "moment";
+import moment from "moment";
 import { extendMoment } from "moment-range";
+
 
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
@@ -14,6 +15,7 @@ import {updateCurrentBookings} from '../../store/booking';
 
 
 import './PlaneProfile.css';
+const Moment = extendMoment(moment);
 
 function PlaneProfile() {
     const dispatch = useDispatch();
@@ -21,6 +23,7 @@ function PlaneProfile() {
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [firstBlocked, setfirstBlocked] = useState(null)
     const [focusedInput, setfocusedInput] = useState(null);
     
     useEffect(() => {
@@ -33,7 +36,7 @@ function PlaneProfile() {
     const dates = useSelector(state => state.booking);
     const currentBookings = useSelector(state => state.booking.currentBookings);
 
-    const currentBookingsArr = [];
+    let currentBookingsArr = [];
     for (const key in currentBookings) {
         if (currentBookings[key].planeId === planeId) {
             currentBookingsArr.push(currentBookings[key])
@@ -42,14 +45,39 @@ function PlaneProfile() {
 
 
     const isBlocked = date => {
+        if (firstBlocked !== null && startDate && date > firstBlocked) {
+            return true;
+        }
+
         let bookedRanges = [];
         let blocked;
-        currentBookingsArr.map(booking => {
-            return bookedRanges = [...bookedRanges,
-            Moment.range(booking.startDate, booking.endDate)]
+
+        for (const key in currentBookings) {
+            bookedRanges.push(Moment.range(currentBookings[key].startDate, currentBookings[key].endDate))
         }
-        );
+        // currentBookingsArr.map(booking => {
+        //     return bookedRanges = [...bookedRanges,
+        //     Moment.range(booking.startDate, booking.endDate)]
+        // });
+        
+        // currentBookingsArr.map(booking => {
+        //     return Moment.range(booking.startDate, booking.endDate)
+        //     // bookedRanges.push(Moment.range(booking.startDate, booking.endDate))
+        // });
+        // console.log(currentBookings)
+        // currentBookingsArr.forEach(booking => {
+        //     console.log(booking)
+        //     // bookedRanges.push(Moment.range(booking.startDate, booking.endDate))
+        // });
+
+        // console.log(typeof(currentBookingsArr))
         blocked = bookedRanges.find(range => range.contains(date));
+        // console.log(blocked)
+        if (firstBlocked == null && date > startDate && blocked) {
+            setfirstBlocked(date)
+            console.log(date)
+        }
+
         return blocked;
     };
 
@@ -95,7 +123,10 @@ function PlaneProfile() {
                     </div>
                 </div>
                 <div className='booking-space'>
-                    <div className='datepicker'>
+                    <div className='datepicker' onClick={() => {
+                        setStartDate(null)
+                        setEndDate(null)
+                    }}>
                         <form onSubmit={bookIt}>
                             <DateRangePicker
                                 startDate={startDate} // momentPropTypes.momentObj or null,
@@ -109,7 +140,7 @@ function PlaneProfile() {
                                 focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                 onFocusChange={focusedInput => setfocusedInput(focusedInput)} // PropTypes.func.isRequired,
                                 showDefaultInputIcon
-                                // isDayBlocked={isBlocked}
+                                isDayBlocked={isBlocked}
                             />
                             <button type='submit'>Book</button>
 

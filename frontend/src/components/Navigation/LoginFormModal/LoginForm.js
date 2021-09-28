@@ -26,6 +26,18 @@ function LoginForm() {
       });
   }
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const cred = 'Demo-lition';
+    const pass = 'password'
+    return dispatch(sessionActions.login({ cred, pass }))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit} className='modal-box'>
@@ -48,6 +60,9 @@ function LoginForm() {
         />
         <button type="submit">Log In</button>
       </form>
+      {/* <form onSubmit={handleDemo}>
+        <button type='submit'>Demo User</button>
+      </form> */}
     </>
   );
 }
