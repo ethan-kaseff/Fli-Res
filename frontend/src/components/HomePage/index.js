@@ -100,7 +100,7 @@ function HomePage({isLoaded}) {
 
                 </div>
             </div>
-            <div className='categories-area'>
+            {/* <div className='categories-area'>
                 <h2>Categories</h2>
                 <div className='category-section'>
                     <h4>4k</h4>
@@ -114,7 +114,7 @@ function HomePage({isLoaded}) {
                     <h4>720p</h4>
                     <p>Getting everyone from point A to B </p>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
