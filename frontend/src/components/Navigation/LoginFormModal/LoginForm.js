@@ -26,17 +26,6 @@ function LoginForm() {
       });
   }
 
-  const handleDemo = (e) => {
-    e.preventDefault();
-    setErrors([]);
-    const cred = 'Demo-lition';
-    const pass = 'password'
-    return dispatch(sessionActions.login({ cred, pass }))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
-  }
 
   return (
     <>
@@ -59,10 +48,11 @@ function LoginForm() {
           required
         />
         <button type="submit">Log In</button>
+        <button onClick={() => dispatch(sessionActions.login({
+          credential: 'demo@user.io',
+          password: 'password'
+        }))}>Demo User</button>
       </form>
-      {/* <form onSubmit={handleDemo}>
-        <button type='submit'>Demo User</button>
-      </form> */}
     </>
   );
 }
