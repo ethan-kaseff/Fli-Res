@@ -12,7 +12,7 @@ import { editBooking } from '../../../../store/booking';
 function BookingCard({booking}) {
   const dispatch = useDispatch()
   const history = useHistory()
-  
+
   const [saveHidden, setsaveHidden] = useState('hidden')
   const [editHidden, seteditHidden] = useState('')
   const [datePicker, setdatePicker] = useState('hidden')
@@ -49,8 +49,9 @@ function BookingCard({booking}) {
   return (
     <div className="booking" key={booking.id}>
       <div onClick={() => {
-                                                history.push(`/planes/${plane.id}`)
-                                            }}>
+          history.push(`/planes/${booking.Plane.id}`)
+        }}
+      >
         <h3>{`${booking.Plane.name} - Booking #${booking.id}`}</h3>
         <img src={booking.Plane.imageLink} alt='Plane'></img>
       </div>
