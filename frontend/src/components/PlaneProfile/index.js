@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import moment from "moment";
 import { extendMoment } from "moment-range";
@@ -19,6 +19,8 @@ const Moment = extendMoment(moment);
 
 function PlaneProfile() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const { planeId } = useParams();
 
     const [startDate, setStartDate] = useState(null);
@@ -94,6 +96,8 @@ function PlaneProfile() {
     const bookIt = (e) => {
         e.preventDefault();
         dispatch(createBooking(user.id, planeId, startDate, endDate));
+        // window.alert('Booking Complete!')
+        // history.push('/profile')
     }
 
 
