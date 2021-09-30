@@ -11,3 +11,7 @@
 body {
     background-color: whitesmoke;
 }
+
+button:hover {
+    cursor: pointer;
+}
