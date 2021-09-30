@@ -13,6 +13,7 @@ function BookingCards() {
 
     if (bookings) {
       const arr = []
+      
       for (const key in bookings) {
         let start = bookings[key].startDate;
         let end = bookings[key].endDate;
@@ -25,6 +26,20 @@ function BookingCards() {
 
         arr.push(bookings[key])
       }
+
+      arr.sort((a, b) => {
+        const aDate = new Date(a.startDate)
+        const bDate = new Date(b.startDate)
+
+        if (bDate < aDate) {
+          return 1
+        } else if (bDate > aDate) {
+          return -1
+        } else {
+          return 0
+        }
+
+      })
       setbookingsArr(arr)
     }
   }, [bookings])
