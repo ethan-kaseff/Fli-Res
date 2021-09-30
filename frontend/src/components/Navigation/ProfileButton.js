@@ -44,11 +44,11 @@ function ProfileButton({ user }) {
                     <div className='username'>{user.username}</div>
                     <div>
                         <NavLink to='/profile'>
-                            <button>Profile</button>
+                            <button className='bars-buttons'>Profile</button>
                         </NavLink>
                     </div>
                     <div>
-                        <button onClick={logout}>Log Out</button>
+                        <button className='bars-buttons' onClick={logout}>Log Out</button>
                     </div>
                 </div>
             )}

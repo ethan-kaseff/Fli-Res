@@ -98,3 +98,22 @@ button {
 .modal-box > button:hover {
     background-color: rgb(236, 162, 93);
 }
+
+
+
+.bars-buttons {
+    background-color: rgb(221, 157, 39);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 8px;
+    /* margin-right: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.bars-buttons:hover {
+    background-color: rgb(204, 133, 0);
+}
