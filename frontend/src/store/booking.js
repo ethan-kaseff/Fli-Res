@@ -41,6 +41,7 @@ const editSingleBooking = booking => ({
 
 // Thunk Action Creator
 export const createBooking = (userId, planeId, startDate, endDate) => async dispatch => {
+    console.log('startDate in thunk: ', startDate)
     const response = await csrfFetch('/api/bookings', {
         method: 'POST',
         headers: {

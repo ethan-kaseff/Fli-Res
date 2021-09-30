@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import moment from "moment";
 import { extendMoment } from "moment-range";
@@ -19,6 +19,8 @@ const Moment = extendMoment(moment);
 
 function PlaneProfile() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const { planeId } = useParams();
 
     const [startDate, setStartDate] = useState(null);
@@ -81,6 +83,13 @@ function PlaneProfile() {
         return blocked;
     };
 
+    useEffect(() => {
+        console.log('startDate:   ', startDate)
+    }, [startDate])
+    useEffect(() => {
+        console.log('endDate:   ', endDate)
+    }, [endDate])
+
 
     
     useEffect( () => {
@@ -94,6 +103,8 @@ function PlaneProfile() {
     const bookIt = (e) => {
         e.preventDefault();
         dispatch(createBooking(user.id, planeId, startDate, endDate));
+        window.alert('Booking Complete!')
+        history.push('/profile')
     }
 
 
@@ -124,10 +135,12 @@ function PlaneProfile() {
                 </div>
                 <div className='booking-space'>
                     <div className='datepicker' onClick={() => {
-                        setStartDate(null)
-                        setEndDate(null)
+                        
                     }}>
-                        <form onSubmit={bookIt}>
+                        <form onSubmit={bookIt} onClick={() => {
+                            setStartDate(null)
+                            setEndDate(null)
+                        }}>
                             <DateRangePicker
                                 startDate={startDate} // momentPropTypes.momentObj or null,
                                 startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -142,9 +155,9 @@ function PlaneProfile() {
                                 showDefaultInputIcon
                                 isDayBlocked={isBlocked}
                             />
-                            <button type='submit'>Book</button>
 
                         </form>
+                            <button onClick={bookIt}>Book</button>
                     </div>
                 </div>
                 <div></div>
