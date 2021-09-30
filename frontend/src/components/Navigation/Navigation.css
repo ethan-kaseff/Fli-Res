@@ -70,7 +70,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(234, 234, 241);
+    background-color:rgb(203, 203, 221);
     /* width: 50vw; */
     /* border: .5px solid black; */
     border-radius: 10px;
@@ -78,8 +78,11 @@ button {
 }
 
 .modal-box > input {
-    padding: 2px;
-    margin: 2px;
+    padding: 4px;
+    margin: 4px;
+    border: 0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:6px;
 }
 
 .modal-box > button {
@@ -88,6 +91,7 @@ button {
     border-radius: 10px;
     color: white;
     padding: 8px;
+    margin: 2px;
     /* margin-right: 5px; */
     text-align: center;
     text-decoration: none;
