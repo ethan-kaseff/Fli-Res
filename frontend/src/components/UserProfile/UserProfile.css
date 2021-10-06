@@ -64,11 +64,22 @@
     margin-bottom: 5px;
 }
 
-.profile-info {
-    /* margin: 15px; */
-    /* padding: 15px; */
-}
+/* .profile-info {
+    width: 50%;
+} */
 
 .hidden {
     display: none;
+}
+
+.plane-image {
+    /* height: 300px; */
+    /* max-height: 400px; */
+    width: 40vw;
+}
+
+@media screen and (max-width: 800px)  {
+    .plane-image {
+        width: 326px;
+    }
 }

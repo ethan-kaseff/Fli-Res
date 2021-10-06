@@ -53,7 +53,7 @@ function BookingCard({booking}) {
         }}
       >
         <h3>{`${booking.Plane.name} - Booking #${booking.id}`}</h3>
-        <img src={booking.Plane.imageLink} alt='Plane'></img>
+        <img class='plane-image' src={booking.Plane.imageLink} alt='Plane'></img>
       </div>
       <div>
         <h4>Date: 
