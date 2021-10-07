@@ -117,8 +117,8 @@ function PlaneProfile() {
                 <div className='plane-info'>
                     <img src={plane.imageLink} alt='plane' className='image'></img>
                     <h1>{plane.name}</h1>
-                    <label>Category: </label>
-                    <span>{plane.categoryId}</span>
+                    {/* <label>Category: </label>
+                    <span>{plane.categoryId}</span> */}
                     <h3>Description</h3>
                     <p>{plane.description}</p>
                     <h3>Plane Facts</h3>

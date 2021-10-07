@@ -72,14 +72,14 @@
     display: none;
 }
 
-.plane-image {
+.booking-image {
     /* height: 300px; */
     /* max-height: 400px; */
     width: 40vw;
 }
 
 @media screen and (max-width: 800px)  {
-    .plane-image {
+    .booking-image {
         width: 326px;
     }
 }
